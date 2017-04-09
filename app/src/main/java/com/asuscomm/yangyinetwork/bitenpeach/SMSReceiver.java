@@ -17,12 +17,15 @@ public class SMSReceiver extends BroadcastReceiver {
     private final String TAG = "JYP/"+getClass().getSimpleName();
 
     private final String SMSReceiveAction = "android.provider.Telephony.SMS_RECEIVED";
+    private final boolean receiveFlag = false;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "onReceive: ");
 
-        if (SMSReceiveAction .equals(intent.getAction())) {
+        if (!receiveFlag)
+            return;
+        if (SMSReceiveAction.equals(intent.getAction())) {
             Bundle bundle = intent.getExtras();
             Object[] messages = (Object[])bundle.get("pdus");
 
