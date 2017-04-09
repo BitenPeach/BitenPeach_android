@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "887598141469",
+    "firebase_url": "https://bitenpeach.firebaseio.com",
+    "project_id": "bitenpeach",
+    "storage_bucket": "bitenpeach.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887598141469:android:b9b5db8430aa7223",
+        "android_client_info": {
+          "package_name": "com.asuscomm.yangyinetwork.bitenpeach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887598141469-ml4sg16phdnqdsk0285scnndp4qrn1v7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhjjWyNvJJdorMYjBPL66y0FEE-RZ35FY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
