@@ -1,4 +1,4 @@
-package com.asuscomm.yangyinetwork.bitenpeach;
+package com.asuscomm.yangyinetwork.bitenpeach.ui;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
-import com.asuscomm.yangyinetwork.bitenpeach.commons.AppController;
+import com.asuscomm.yangyinetwork.bitenpeach.utils.AppController;
 
 /**
  * Created by jaeyoung on 2017. 4. 7..
@@ -17,13 +17,12 @@ public class SMSReceiver extends BroadcastReceiver {
     private final String TAG = "JYP/"+getClass().getSimpleName();
 
     private final String SMSReceiveAction = "android.provider.Telephony.SMS_RECEIVED";
-    private final boolean receiveFlag = false;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "onReceive: ");
 
-        if (!receiveFlag)
+        if (!AppController.SMS_RECEIVE())
             return;
         if (SMSReceiveAction.equals(intent.getAction())) {
             Bundle bundle = intent.getExtras();

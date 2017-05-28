@@ -1,4 +1,4 @@
-package com.asuscomm.yangyinetwork.bitenpeach.adapter;
+package com.asuscomm.yangyinetwork.bitenpeach.ui.main.activity.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.asuscomm.yangyinetwork.bitenpeach.R;
-import com.asuscomm.yangyinetwork.bitenpeach.domain.RawText;
+import com.asuscomm.yangyinetwork.bitenpeach.models.RawText;
 
 import java.util.List;
 

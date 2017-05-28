@@ -1,4 +1,4 @@
-package com.asuscomm.yangyinetwork.bitenpeach;
+package com.asuscomm.yangyinetwork.bitenpeach.ui.main.activity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -18,14 +18,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.asuscomm.yangyinetwork.bitenpeach.adapter.RawTextAdapter;
-import com.asuscomm.yangyinetwork.bitenpeach.domain.RawText;
+import com.asuscomm.yangyinetwork.bitenpeach.R;
+import com.asuscomm.yangyinetwork.bitenpeach.ui.main.activity.adapter.RawTextAdapter;
+import com.asuscomm.yangyinetwork.bitenpeach.models.RawText;
+import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.WitaiService;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,14 +139,22 @@ public class MainActivity extends AppCompatActivity {
         mRawTextEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(DEFAULT_MSG_LENGTH_LIMIT)});
 
         // Send button sends a rawText and clears the EditText
+//        mSendButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                RawText rawText = new RawText("Samples",
+//                        mRawTextEditText.getText().toString());
+//                mRawTextsDatabaseReference.push().setValue(rawText);
+//                // Clear input box
+//                mRawTextEditText.setText("");
+//            }
+//        });
+
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                RawText rawText = new RawText("Samples",
-                        mRawTextEditText.getText().toString());
-                mRawTextsDatabaseReference.push().setValue(rawText);
-                // Clear input box
-                mRawTextEditText.setText("");
+            public void onClick(View v) {
+                WitaiService service = new WitaiService();
+                service.get();
             }
         });
     }
