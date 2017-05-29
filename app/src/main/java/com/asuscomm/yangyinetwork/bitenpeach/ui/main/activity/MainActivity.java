@@ -60,8 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void testWitai() {
         WitaiService service = new WitaiService();
-        RawText rawText = DummyData.getDummyRawText();
-        service.get(rawText);
+        List<RawText> rawTexts = DummyData.getDummyRawTexts();
+        for (RawText each:
+             rawTexts) {
+            service.get(each);
+        }
     }
 
     private void initFirebaseDatabase() {

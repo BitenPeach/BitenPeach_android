@@ -42,10 +42,8 @@ public class WitaiParser {
                 ArrayList<LinkedTreeMap> candidates = entities.get(component);
                 for (int i = 0; i < candidates.size(); i++) {
                     LinkedTreeMap candidate= candidates.get(i);
-//                    if(component.equals(OrderSheet.COMPONENTS.NAMES[AMOUNT_OF_MONEY_IDX])) {
-                        processedText.addContent(component, candidate.get("value"));
-                        Log.d(TAG, "witaiParser: component=" + component + " value=" + candidate.get("value"));
-//                    }
+                    processedText.addContent(component, candidate.get("value"));
+                    Log.d(TAG, "witaiParser: component=" + component + " value=" + candidate.get("value"));
                 }
             }
         }
