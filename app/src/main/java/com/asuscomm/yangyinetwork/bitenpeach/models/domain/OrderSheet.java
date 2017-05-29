@@ -8,14 +8,31 @@ public class OrderSheet {
     public interface COMPONENTS {
         int LOCATION_IDX = 0;
         int AMOUNT_OF_MONEY_IDX = 1;
-        int TO_PHONE_NUMBER_IDX = 2;
+
+        int FROM_NAME_IDX = 2;
+
+        int TO_LOCATION_IDX = 3;
+        int TO_PHONE_NUMBER_IDX = 4;
+        int TO_NAME_IDX = 5;
+
+        int PEACH_SIZE_IDX = 6;
+        int PEACH_KIND_IDX = 7;
+        int PEACH_NUMOFBOX_IDX = 8;
+        int PEACH_AMOUNTOFMONEY_IDX = 9;
         String[] NAMES = {
                 "location",
                 "amount_of_money",
-                "to",
-                "1",
-                "2",
-                "3"
+
+                "from_name",
+
+                "to_location_unused",
+                "phone_number",
+                "to_name",
+
+                "peach_size",
+                "peach_kind",
+                "peach_numofbox",
+                "peach_amount_of_money_unused"
         };
     }
 
