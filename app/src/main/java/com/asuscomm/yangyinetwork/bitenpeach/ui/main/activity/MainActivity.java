@@ -53,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
         chkPermission(Manifest.permission.RECEIVE_SMS);
         initFirebaseDatabase();
         initView();
+
+        testWitai();
+    }
+
+    private void testWitai() {
+        WitaiService service = new WitaiService();
+        service.get();
     }
 
     private void initFirebaseDatabase() {

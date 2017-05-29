@@ -3,6 +3,7 @@ package com.asuscomm.yangyinetwork.bitenpeach.models.witai;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  * Created by jaeyoung on 2017. 4. 18..
@@ -13,9 +14,9 @@ public class MeaningOfSentence implements Serializable {
     @SerializedName("_text")
     private String _text;
     @SerializedName("entities")
-    private Entity entities;
+    private HashMap entities;
 
-    public MeaningOfSentence(String msg_id, String _text, Entity entities) {
+    public MeaningOfSentence(String msg_id, String _text, HashMap entities) {
         this.msg_id = msg_id;
         this._text = _text;
         this.entities = entities;
@@ -37,11 +38,20 @@ public class MeaningOfSentence implements Serializable {
         this._text = _text;
     }
 
-    public Entity getEntities() {
+    public HashMap getEntities() {
         return entities;
     }
 
-    public void setEntities(Entity entities) {
+    public void setEntities(HashMap entities) {
         this.entities = entities;
+    }
+
+    @Override
+    public String toString() {
+        return "MeaningOfSentence{" +
+                "msg_id='" + msg_id + '\'' +
+                ", _text='" + _text + '\'' +
+                ", entities=" + entities +
+                '}';
     }
 }

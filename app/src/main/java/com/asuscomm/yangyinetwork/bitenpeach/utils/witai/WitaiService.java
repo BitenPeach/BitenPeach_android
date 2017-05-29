@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class WitaiService {
-    String TAG = getClass().getSimpleName();
+    String TAG = "JYP/"+getClass().getSimpleName();
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.wit.ai/")
             .addConverterFactory(GsonConverterFactory.create())
