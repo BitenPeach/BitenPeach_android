@@ -1,6 +1,10 @@
 package com.asuscomm.yangyinetwork.bitenpeach.utils;
 
+import android.app.Activity;
 import android.app.Application;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
@@ -24,9 +28,16 @@ public class AppController extends Application implements ValueEventListener {
     private static boolean SMS_RECEIVE_FLAG = true;
     private static DatabaseReference rawTextRef;
 
+    private static AppController mInstance;
+
+    public static AppController getInstance() {
+        return mInstance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        mInstance = this;
         initFirebaseDatabase();
 
         rawTextRef.addValueEventListener(this);
@@ -75,4 +86,19 @@ public class AppController extends Application implements ValueEventListener {
     public void onCancelled(DatabaseError databaseError) {
         Log.w(TAG, "Failed to read value.", databaseError.toException());
     }
+
+    public void chkPermission(String permission, Activity activity) {
+        Log.d(TAG, "chkPermission: ");
+        int permissionCheck = ContextCompat.checkSelfPermission(activity, permission);
+
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "chkPermission: Granted");
+            return;
+        } else {
+            Log.d(TAG, "chkPermission: GettingPermission");
+            String[] permissions = { permission };
+            ActivityCompat.requestPermissions(activity, permissions, 1);
+        }
+    }
+
 }

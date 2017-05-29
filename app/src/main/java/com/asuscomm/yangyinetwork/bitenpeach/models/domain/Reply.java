@@ -50,4 +50,8 @@ public class Reply {
                 ", isSended=" + isSended +
                 '}';
     }
+
+    public String getPhoneNumber() {
+        return "01067213773";
+    }
 }

@@ -1,5 +1,6 @@
 package com.asuscomm.yangyinetwork.bitenpeach.models.logic;
 
+import android.app.Activity;
 import android.util.Log;
 
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.OrderSheet;
@@ -18,7 +19,7 @@ import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.WitaiService;
 public class RawTextProcesser {
     private static final String TAG = "JYP/RawTextProcesser";
 
-    public static void processRawText(final RawText rawText) {
+    public static void processRawText(final RawText rawText, final Activity activity) {
         WitaiService.getInstance().get(rawText, new WitaiService.OnSuccessListener() {
             @Override
             public void onSuccess(MeaningOfSentence meaningOfSentence) {
@@ -31,7 +32,7 @@ public class RawTextProcesser {
                 Reply reply = ReplyMaker.makeReply(orderSheet);
                 Log.d(TAG, "onResponse: reply="+reply.toString());
 
-                SMSSender.sendReply(reply);
+                SMSSender.sendReply(reply, activity);
             }
         });
     }

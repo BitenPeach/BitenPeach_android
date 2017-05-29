@@ -1,6 +1,8 @@
 package com.asuscomm.yangyinetwork.bitenpeach.ui.main.activity;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -22,6 +24,7 @@ import com.asuscomm.yangyinetwork.bitenpeach.R;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.dummy.DummyData;
 import com.asuscomm.yangyinetwork.bitenpeach.ui.main.activity.adapter.RawTextAdapter;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
+import com.asuscomm.yangyinetwork.bitenpeach.utils.AppController;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.WitaiService;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         
         Log.d(TAG, "onCreate: ");
-        chkPermission(Manifest.permission.RECEIVE_SMS);
+        AppController.getInstance().chkPermission(Manifest.permission.RECEIVE_SMS, this);
         initFirebaseDatabase();
         initView();
 
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         List<RawText> rawTexts = DummyData.getDummyRawTexts();
         for (RawText each:
              rawTexts) {
-            processRawText(each);
+            processRawText(each, this);
         }
     }
 
@@ -100,20 +103,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void chkPermission(String permission) {
-        Log.d(TAG, "chkPermission: ");
-        int permissionCheck = ContextCompat.checkSelfPermission(this, permission);
-
-        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-            Log.d(TAG, "chkPermission: Granted");
-            return;
-        } else {
-            Log.d(TAG, "chkPermission: GettingPermission");
-            String[] permissions = { permission };
-            ActivityCompat.requestPermissions(this, permissions, 1);
-        }
-    }
-    
     private void initView(){
         // Initialize references to views
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
