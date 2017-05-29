@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.asuscomm.yangyinetwork.bitenpeach.R;
+import com.asuscomm.yangyinetwork.bitenpeach.models.domain.dummy.DummyData;
 import com.asuscomm.yangyinetwork.bitenpeach.ui.main.activity.adapter.RawTextAdapter;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.WitaiService;
@@ -59,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void testWitai() {
         WitaiService service = new WitaiService();
-        service.get();
+        RawText rawText = DummyData.getDummyRawText();
+        service.get(rawText);
     }
 
     private void initFirebaseDatabase() {
@@ -145,23 +147,15 @@ public class MainActivity extends AppCompatActivity {
         });
         mRawTextEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(DEFAULT_MSG_LENGTH_LIMIT)});
 
-        // Send button sends a rawText and clears the EditText
-//        mSendButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                RawText rawText = new RawText("Samples",
-//                        mRawTextEditText.getText().toString());
-//                mRawTextsDatabaseReference.push().setValue(rawText);
-//                // Clear input box
-//                mRawTextEditText.setText("");
-//            }
-//        });
-
+//         Send button sends a rawText and clears the EditText
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                WitaiService service = new WitaiService();
-                service.get();
+            public void onClick(View view) {
+                RawText rawText = new RawText("Samples",
+                        mRawTextEditText.getText().toString());
+                mRawTextsDatabaseReference.push().setValue(rawText);
+                // Clear input box
+                mRawTextEditText.setText("");
             }
         });
     }

@@ -2,8 +2,11 @@ package com.asuscomm.yangyinetwork.bitenpeach.utils.witai;
 
 import android.util.Log;
 
+import com.asuscomm.yangyinetwork.bitenpeach.models.domain.OrderSheet;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.ProcessedText;
+import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.witai.MeaningOfSentence;
+import com.asuscomm.yangyinetwork.bitenpeach.models.logic.OrderSheetFiller;
 import com.asuscomm.yangyinetwork.bitenpeach.models.logic.witai.WitaiParser;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.network.WitaiNetwork;
 
@@ -31,8 +34,8 @@ public class WitaiService {
     public WitaiService() {
     }
 
-    public void get(){
-        String q = "$복숭아주문$ 서울시 동대문구 용두동 193-25번지로 복숭아 3만원 짜리 2박스 보내주세요. 받는사람은 김훈영이고 전화번호는 01041521166 입니다";
+    public void get(final RawText rawText){
+        String q = rawText.getMessageBody();
 
         Call<MeaningOfSentence> call = mNetwork.getMeaningOfSentence(authorization,
                 q);
@@ -40,10 +43,13 @@ public class WitaiService {
         call.enqueue(new Callback<MeaningOfSentence>() {
             @Override
             public void onResponse(Call<MeaningOfSentence> call, Response<MeaningOfSentence> response) {
-                MeaningOfSentence res = response.body();
-                Log.d(TAG, "get: "+response.body().toString());
-                ProcessedText result = WitaiParser.witaiParser(res);
-                Log.d(TAG, "ProcessedText: "+result.toString());
+                MeaningOfSentence meaningOfSentence= response.body();
+                Log.d(TAG, "get: "+meaningOfSentence.toString());
+                ProcessedText processedText = WitaiParser.witaiParser(meaningOfSentence);
+                Log.d(TAG, "ProcessedText: "+processedText.toString());
+                processedText.setPhoneNumber(rawText.getPhoneNumber());
+                OrderSheet orderSheet = OrderSheetFiller.fillOrderSheet(processedText);
+                Log.d(TAG, "OrderSheet: "+orderSheet.toString());
             }
 
             @Override

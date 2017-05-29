@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class ProcessedText {
     private String rawTextId;
+    private String phoneNumber;
     private String intent;
     public interface INTENT {
         String ORDER = "주문";
@@ -62,6 +63,14 @@ public class ProcessedText {
 
     public void addContent(String key, Object value) {
         this.content.put(key, value);
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
