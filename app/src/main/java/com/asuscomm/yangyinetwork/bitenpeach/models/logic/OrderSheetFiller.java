@@ -42,11 +42,21 @@ public class OrderSheetFiller {
 
             component = OrderSheet.COMPONENTS.NAMES[AMOUNT_OF_MONEY_IDX];
             if(component.equals(key)) {
-                if(orderSheet.getPeach_amount_of_money() ==null ) {
+                if(orderSheet.getPeach_amount_of_money() == null ) {
                     orderSheet.setPeach_amount_of_money((Double) value);
                     Log.d(TAG, "fillOrderSheet: getPeach_amount_of_money() <- "+value);
                 } else {
                     Log.d(TAG, "fillOrderSheet: getPeach_amount_of_money() != null");
+                }
+            }
+
+            component = OrderSheet.COMPONENTS.NAMES[FROM_NAME_IDX];
+            if(component.equals(key)) {
+                if(orderSheet.getFrom_name() == null ) {
+                    orderSheet.setFrom_name((String) value);
+                    Log.d(TAG, "fillOrderSheet: getFrom_name() <- "+value);
+                } else {
+                    Log.d(TAG, "fillOrderSheet: getFrom_name() != null");
                 }
             }
 
@@ -60,8 +70,46 @@ public class OrderSheetFiller {
                 }
             }
 
-        }
+            component = OrderSheet.COMPONENTS.NAMES[TO_NAME_IDX];
+            if(component.equals(key)) {
+                if(orderSheet.getTo_name() ==null ) {
+                    orderSheet.setTo_name((String) value);
+                    Log.d(TAG, "fillOrderSheet: getTo_name() <- "+value);
+                } else {
+                    Log.d(TAG, "fillOrderSheet: getTo_name() != null");
+                }
+            }
 
+            component = OrderSheet.COMPONENTS.NAMES[PEACH_SIZE_IDX];
+            if(component.equals(key)) {
+                if(orderSheet.getPeach_size() ==null ) {
+                    orderSheet.setPeach_size((Integer) value);
+                    Log.d(TAG, "fillOrderSheet: getPeach_size() <- "+value);
+                } else {
+                    Log.d(TAG, "fillOrderSheet: getPeach_size() != null");
+                }
+            }
+
+            component = OrderSheet.COMPONENTS.NAMES[PEACH_KIND_IDX];
+            if(component.equals(key)) {
+                if(orderSheet.getPeach_kind() ==null ) {
+                    orderSheet.setPeach_kind((String) value);
+                    Log.d(TAG, "fillOrderSheet: getPeach_kind() <- "+value);
+                } else {
+                    Log.d(TAG, "fillOrderSheet: getPeach_kind() != null");
+                }
+            }
+
+            component = OrderSheet.COMPONENTS.NAMES[PEACH_NUMOFBOX_IDX];
+            if(component.equals(key)) {
+                if(orderSheet.getPeach_numofbox() ==null ) {
+                    orderSheet.setPeach_numofbox((Integer) value);
+                    Log.d(TAG, "fillOrderSheet: getPeach_numofbox() <- "+value);
+                } else {
+                    Log.d(TAG, "fillOrderSheet: getPeach_numofbox() != null");
+                }
+            }
+        }
 
         return orderSheet;
     }

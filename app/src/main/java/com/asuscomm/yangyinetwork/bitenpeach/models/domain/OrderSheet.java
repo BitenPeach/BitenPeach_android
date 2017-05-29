@@ -11,14 +11,14 @@ public class OrderSheet {
 
         int FROM_NAME_IDX = 2;
 
-        int TO_LOCATION_IDX = 3;
+//        int TO_LOCATION_IDX = 3;
         int TO_PHONE_NUMBER_IDX = 4;
         int TO_NAME_IDX = 5;
 
         int PEACH_SIZE_IDX = 6;
         int PEACH_KIND_IDX = 7;
         int PEACH_NUMOFBOX_IDX = 8;
-        int PEACH_AMOUNTOFMONEY_IDX = 9;
+//        int PEACH_AMOUNTOFMONEY_IDX = 9;
         String[] NAMES = {
                 "location",
                 "amount_of_money",
@@ -58,7 +58,7 @@ public class OrderSheet {
         String WHITEPEACH = "백도";
         String YELLOWPEACH = "황도";
     }
-    private Double peach_numofbox = null;
+    private Integer peach_numofbox = null;
     private Double peach_amount_of_money = null;
 
     public OrderSheet() {
@@ -141,11 +141,11 @@ public class OrderSheet {
         this.peach_kind = peach_kind;
     }
 
-    public Double getPeach_numofbox() {
+    public Integer getPeach_numofbox() {
         return peach_numofbox;
     }
 
-    public void setPeach_numofbox(Double peach_numofbox) {
+    public void setPeach_numofbox(Integer peach_numofbox) {
         this.peach_numofbox = peach_numofbox;
     }
 
