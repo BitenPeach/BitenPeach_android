@@ -23,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class WitaiService {
+    private static WitaiService mInstance = null;
     String TAG = "JYP/"+getClass().getSimpleName();
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.wit.ai/")
@@ -36,7 +37,18 @@ public class WitaiService {
     public WitaiService() {
     }
 
-    public void get(final RawText rawText){
+    public static WitaiService getInstance() {
+        if(mInstance == null) {
+            mInstance = new WitaiService();
+        }
+        return mInstance;
+    }
+
+    public interface OnSuccessListener {
+        void onSuccess(MeaningOfSentence result);
+    }
+
+    public void get(final RawText rawText, final OnSuccessListener listener){
         String q = rawText.getMessageBody();
 
         Call<MeaningOfSentence> call = mNetwork.getMeaningOfSentence(authorization,
@@ -45,15 +57,16 @@ public class WitaiService {
         call.enqueue(new Callback<MeaningOfSentence>() {
             @Override
             public void onResponse(Call<MeaningOfSentence> call, Response<MeaningOfSentence> response) {
-                MeaningOfSentence meaningOfSentence= response.body();
-                Log.d(TAG, "onResponse: meaningOfSentence="+meaningOfSentence.toString());
-                ProcessedText processedText = WitaiParser.witaiParser(meaningOfSentence);
-                Log.d(TAG, "onResponse: processedText="+processedText.toString());
-                processedText.setPhoneNumber(rawText.getPhoneNumber());
-                OrderSheet orderSheet = OrderSheetFiller.fillOrderSheet(processedText);
-                Log.d(TAG, "onResponse: orderSheet="+orderSheet.toString());
-                Reply reply = ReplyMaker.makeReply(orderSheet);
-                Log.d(TAG, "onResponse: reply="+reply.toString());
+                listener.onSuccess(response.body());
+//                MeaningOfSentence meaningOfSentence= response.body();
+//                Log.d(TAG, "onResponse: meaningOfSentence="+meaningOfSentence.toString());
+//                ProcessedText processedText = WitaiParser.witaiParser(meaningOfSentence);
+//                Log.d(TAG, "onResponse: processedText="+processedText.toString());
+//                processedText.setPhoneNumber(rawText.getPhoneNumber());
+//                OrderSheet orderSheet = OrderSheetFiller.fillOrderSheet(processedText);
+//                Log.d(TAG, "onResponse: orderSheet="+orderSheet.toString());
+//                Reply reply = ReplyMaker.makeReply(orderSheet);
+//                Log.d(TAG, "onResponse: reply="+reply.toString());
             }
 
             @Override
