@@ -5,8 +5,10 @@ import android.util.Log;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.OrderSheet;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.ProcessedText;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
+import com.asuscomm.yangyinetwork.bitenpeach.models.domain.Reply;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.witai.MeaningOfSentence;
 import com.asuscomm.yangyinetwork.bitenpeach.models.logic.OrderSheetFiller;
+import com.asuscomm.yangyinetwork.bitenpeach.models.logic.ReplyMaker;
 import com.asuscomm.yangyinetwork.bitenpeach.models.logic.witai.WitaiParser;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.network.WitaiNetwork;
 
@@ -44,12 +46,14 @@ public class WitaiService {
             @Override
             public void onResponse(Call<MeaningOfSentence> call, Response<MeaningOfSentence> response) {
                 MeaningOfSentence meaningOfSentence= response.body();
-                Log.d(TAG, "get: "+meaningOfSentence.toString());
+                Log.d(TAG, "onResponse: meaningOfSentence="+meaningOfSentence.toString());
                 ProcessedText processedText = WitaiParser.witaiParser(meaningOfSentence);
-                Log.d(TAG, "ProcessedText: "+processedText.toString());
+                Log.d(TAG, "onResponse: processedText="+processedText.toString());
                 processedText.setPhoneNumber(rawText.getPhoneNumber());
                 OrderSheet orderSheet = OrderSheetFiller.fillOrderSheet(processedText);
-                Log.d(TAG, "OrderSheet: "+orderSheet.toString());
+                Log.d(TAG, "onResponse: orderSheet="+orderSheet.toString());
+                Reply reply = ReplyMaker.makeReply(orderSheet);
+                Log.d(TAG, "onResponse: reply="+reply.toString());
             }
 
             @Override
