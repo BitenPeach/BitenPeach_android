@@ -1,4 +1,4 @@
-package com.asuscomm.yangyinetwork.bitenpeach.models;
+package com.asuscomm.yangyinetwork.bitenpeach.models.domain;
 
 /**
  * Created by jaeyoung on 2017. 5. 29..

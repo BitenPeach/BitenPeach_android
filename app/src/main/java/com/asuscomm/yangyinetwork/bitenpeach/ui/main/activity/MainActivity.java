@@ -20,7 +20,7 @@ import android.widget.ProgressBar;
 
 import com.asuscomm.yangyinetwork.bitenpeach.R;
 import com.asuscomm.yangyinetwork.bitenpeach.ui.main.activity.adapter.RawTextAdapter;
-import com.asuscomm.yangyinetwork.bitenpeach.models.RawText;
+import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.WitaiService;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;

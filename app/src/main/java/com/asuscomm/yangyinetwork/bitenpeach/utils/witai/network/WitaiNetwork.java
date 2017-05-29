@@ -1,6 +1,6 @@
 package com.asuscomm.yangyinetwork.bitenpeach.utils.witai.network;
 
-import com.asuscomm.yangyinetwork.bitenpeach.models.witai.MeaningOfSentence;
+import com.asuscomm.yangyinetwork.bitenpeach.models.domain.witai.MeaningOfSentence;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

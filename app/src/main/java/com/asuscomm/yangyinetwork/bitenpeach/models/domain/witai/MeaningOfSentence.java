@@ -1,4 +1,4 @@
-package com.asuscomm.yangyinetwork.bitenpeach.models.witai;
+package com.asuscomm.yangyinetwork.bitenpeach.models.domain.witai;
 
 import com.google.gson.annotations.SerializedName;
 

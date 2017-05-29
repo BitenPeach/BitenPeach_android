@@ -3,7 +3,7 @@ package com.asuscomm.yangyinetwork.bitenpeach.utils;
 import android.app.Application;
 import android.util.Log;
 
-import com.asuscomm.yangyinetwork.bitenpeach.models.RawText;
+import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

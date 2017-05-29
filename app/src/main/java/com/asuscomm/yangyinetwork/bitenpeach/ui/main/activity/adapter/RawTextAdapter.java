@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.asuscomm.yangyinetwork.bitenpeach.R;
-import com.asuscomm.yangyinetwork.bitenpeach.models.RawText;
+import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
 
 import java.util.List;
 

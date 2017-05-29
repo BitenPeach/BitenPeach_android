@@ -1,4 +1,4 @@
-package com.asuscomm.yangyinetwork.bitenpeach.models;
+package com.asuscomm.yangyinetwork.bitenpeach.models.domain;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

@@ -2,7 +2,9 @@ package com.asuscomm.yangyinetwork.bitenpeach.utils.witai;
 
 import android.util.Log;
 
-import com.asuscomm.yangyinetwork.bitenpeach.models.witai.MeaningOfSentence;
+import com.asuscomm.yangyinetwork.bitenpeach.models.domain.ProcessedText;
+import com.asuscomm.yangyinetwork.bitenpeach.models.domain.witai.MeaningOfSentence;
+import com.asuscomm.yangyinetwork.bitenpeach.models.logic.witai.WitaiParser;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.network.WitaiNetwork;
 
 import retrofit2.Call;
@@ -40,6 +42,8 @@ public class WitaiService {
             public void onResponse(Call<MeaningOfSentence> call, Response<MeaningOfSentence> response) {
                 MeaningOfSentence res = response.body();
                 Log.d(TAG, "get: "+response.body().toString());
+                ProcessedText result = WitaiParser.witaiParser(res);
+                Log.d(TAG, "ProcessedText: "+result.toString());
             }
 
             @Override
