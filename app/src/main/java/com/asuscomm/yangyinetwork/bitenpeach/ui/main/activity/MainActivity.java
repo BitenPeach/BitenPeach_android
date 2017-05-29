@@ -32,6 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.asuscomm.yangyinetwork.bitenpeach.models.logic.RawTextProcesser.processRawText;
+
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "JYP/"+getClass().getSimpleName();
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
@@ -59,11 +61,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testWitai() {
-        WitaiService service = new WitaiService();
         List<RawText> rawTexts = DummyData.getDummyRawTexts();
         for (RawText each:
              rawTexts) {
-            service.get(each);
+            processRawText(each);
         }
     }
 
