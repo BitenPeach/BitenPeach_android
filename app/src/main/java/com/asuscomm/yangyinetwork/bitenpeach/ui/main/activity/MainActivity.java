@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
 //            processRawText(each);
 //        }
 //
-//        RawText rawText = DummyData.getDummyRawText();
-//        processRawText(rawText);
+        RawText rawText = DummyData.getDummyRawText();
+        processRawText(rawText);
     }
 
     private void initFirebaseDatabase() {

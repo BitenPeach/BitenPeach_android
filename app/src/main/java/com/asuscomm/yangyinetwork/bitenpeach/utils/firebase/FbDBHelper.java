@@ -39,27 +39,35 @@ public class FbDBHelper {
 
     public void save(Object object) {
         Log.d(TAG, "save: object="+object.toString());
-        DatabaseReference object_ref = null;
+        String fromPhoneNumber;
+        String objectName;
+
+        DatabaseReference object_ref;
         if (object instanceof RawText) {
-            object_ref = mRef.child(FbDBPath.DBPATH_RAWTEXT);
+            objectName = FbDBPath.DBPATH_RAWTEXT;
+            fromPhoneNumber = ((RawText)object).getPhoneNumber();
             Log.d(TAG, "save: RawText");
         }
         else if (object instanceof ProcessedText) {
-            object_ref = mRef.child(FbDBPath.DBPATH_PROCESSEDTEXT);
+            objectName = FbDBPath.DBPATH_PROCESSEDTEXT;
+            fromPhoneNumber = ((ProcessedText)object).getPhoneNumber();
             Log.d(TAG, "save: ProcessedText");
         }
         else if (object instanceof OrderSheet) {
-            object_ref = mRef.child(FbDBPath.DBPATH_ORDERSHEET);
+            objectName = FbDBPath.DBPATH_ORDERSHEET;
+            fromPhoneNumber = ((OrderSheet)object).getFrom_phone_number();
             Log.d(TAG, "save: OrderSheet");
         }
         else if (object instanceof Reply) {
-            object_ref = mRef.child(FbDBPath.DBPATH_REPLY);
+            objectName = FbDBPath.DBPATH_REPLY;
+            fromPhoneNumber = ((Reply)object).getPhoneNumber();
             Log.d(TAG, "save: Reply");
         } else {
             Log.e(TAG, "save: invalidObject", new Throwable("Invalid Object"));
             return;
         }
 
+        object_ref = mRef.child(fromPhoneNumber).child(objectName);
         String key = object_ref.push().getKey();
 
         Map<String, Object> childUpdates = new HashMap<>();
