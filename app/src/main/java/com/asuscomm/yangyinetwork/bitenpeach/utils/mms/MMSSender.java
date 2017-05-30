@@ -28,7 +28,7 @@ public class MMSSender {
     }
 
     public void send(String phoneNumber, String body) {
-        Log.d(TAG, "send: ");
+        Log.d(TAG, "send: phoneNumber="+phoneNumber+"body="+body);
         Settings settings = new Settings();
         settings.setUseSystemSending(true);
         Transaction transaction = new Transaction(AppController.getInstance(), settings);

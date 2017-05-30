@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import static com.asuscomm.yangyinetwork.bitenpeach.utils.consts.config.MMSReceiver.GETMMS_SLEEP_MILLIS;
 import static com.asuscomm.yangyinetwork.bitenpeach.utils.sms.SMSReceiver.processSMS;
 
 /**
@@ -31,6 +32,7 @@ public class MMSReceiver {
     private ContentResolver contentResolver;
     private List<String> existMMSList;
     private boolean processing = false;
+    private boolean readFlag;
 
 
 
@@ -68,21 +70,35 @@ public class MMSReceiver {
     public void getMMS() {
         if(!processing) {
             processing = true;
+            readFlag = false;
 
-            final String[] projection = new String[]{"_id", "ct_t", "date"};
-            Uri uri = Uri.parse("content://mms/inbox");
-            Cursor query = contentResolver.query(uri, projection, null, null, "date DESC");
+            while(true) {
 
-            if (query.moveToFirst()) {
-                do {
-                    String mmsId = query.getString(query.getColumnIndex("_id"));
-                    if (!existMMSList.contains(mmsId)) {
-                        getMMS(mmsId);
+                final String[] projection = new String[]{"_id", "ct_t", "date"};
+                Uri uri = Uri.parse("content://mms/inbox");
+                Cursor query = contentResolver.query(uri, projection, null, null, "date DESC");
+
+                if (query.moveToFirst()) {
+                    do {
+                        String mmsId = query.getString(query.getColumnIndex("_id"));
+                        if (!existMMSList.contains(mmsId)) {
+                            getMMS(mmsId);
+                        }
+                    } while (query.moveToNext());
+
+                }
+                query.close();
+                if (readFlag) {
+                    break;
+                } else {
+                    try {
+                        Thread.sleep(GETMMS_SLEEP_MILLIS);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                } while (query.moveToNext());
-
+                }
             }
-            query.close();
+
             processing = false;
         } else {
             Log.d(TAG, "getMMS: prossing");
@@ -118,6 +134,7 @@ public class MMSReceiver {
         }
 
         Log.d(TAG, "getMMS: "+"From : "+incommingNumber +" Body : "+messageBody);
+        readFlag = true;
         processSMS(incommingNumber, messageBody);
     }
 

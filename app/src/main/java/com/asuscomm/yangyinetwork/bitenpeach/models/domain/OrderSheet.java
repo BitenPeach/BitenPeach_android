@@ -38,6 +38,8 @@ public class OrderSheet {
         };
     }
 
+    private boolean firstConversation;
+
     private String to_location = null;
     private String to_name = null;
     private String to_phone_number = null;
@@ -64,6 +66,14 @@ public class OrderSheet {
     private Double peach_amount_of_money = null;
 
     public OrderSheet() {
+    }
+
+    public boolean isFirstConversation() {
+        return firstConversation;
+    }
+
+    public void setFirstConversation(boolean firstConversation) {
+        this.firstConversation = firstConversation;
     }
 
     public OrderSheet(String phone_number) {

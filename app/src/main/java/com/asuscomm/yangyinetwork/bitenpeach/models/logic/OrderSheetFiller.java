@@ -31,6 +31,9 @@ public class OrderSheetFiller {
 
                 if(orderSheet == null) { // Cannot find the prev OrderSheet.
                     orderSheet = new OrderSheet(processedText.getPhoneNumber());
+                    orderSheet.setFirstConversation(true);
+                } else {
+                    orderSheet.setFirstConversation(false);
                 }
 
                 HashMap hashMap = processedText.getContent();

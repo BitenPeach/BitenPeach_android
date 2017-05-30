@@ -11,10 +11,10 @@ public class OrderSheetValidater {
         boolean result = true;
         Object entity;
 
-//        entity = orderSheet.getFrom_name();
-//        if(entity == null) {
-//            result = false;
-//        }
+        entity = orderSheet.getFrom_name();
+        if(entity == null) {
+            result = false;
+        }
 //        entity = orderSheet.getFrom_phone_number();
 //        if(entity == null) {
 //            result = false;
