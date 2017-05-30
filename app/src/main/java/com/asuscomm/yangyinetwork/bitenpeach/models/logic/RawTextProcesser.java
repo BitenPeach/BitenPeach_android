@@ -32,7 +32,7 @@ public class RawTextProcesser {
                 Reply reply = ReplyMaker.makeReply(orderSheet);
                 Log.d(TAG, "onResponse: reply="+reply.toString());
 
-                SMSSender.sendReply(reply, activity);
+//                SMSSender.sendReply(reply, activity);
             }
         });
     }
