@@ -7,6 +7,7 @@ package com.asuscomm.yangyinetwork.bitenpeach.models.domain;
 public class Reply {
     private String rawTextId;
     private String body;
+    private String phoneNumber;
     private boolean isSended;
 
     public Reply() {
@@ -16,6 +17,14 @@ public class Reply {
         this.rawTextId = rawTextId;
         this.body = body;
         this.isSended = isSended;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getRawTextId() {
@@ -49,9 +58,5 @@ public class Reply {
                 ", body='" + body + '\'' +
                 ", isSended=" + isSended +
                 '}';
-    }
-
-    public String getPhoneNumber() {
-        return "01067213773";
     }
 }

@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.AppController;
+
+import static com.asuscomm.yangyinetwork.bitenpeach.models.logic.RawTextProcesser.processRawText;
 
 /**
  * Created by jaeyoung on 2017. 4. 7..
@@ -33,8 +36,19 @@ public class SMSReceiver extends BroadcastReceiver {
                 String phoneNumber = currentMessage.getDisplayOriginatingAddress();
                 String messageBody = currentMessage.getDisplayMessageBody();
                 Log.d(TAG, "onReceive: "+"From : "+phoneNumber +" Body : "+messageBody);
-                AppController.saveTextMsg(phoneNumber, messageBody);
+
+                processSMS(phoneNumber, messageBody);
             }
+        }
+    }
+
+    private void processSMS(String phoneNumber, String messageBody) {
+        if (PhoneNumberChecker.allowedPhoneNumber(phoneNumber)) {
+            Log.i(TAG, "processSMS: Allowed PhoneNumber");
+            RawText rawText = new RawText(phoneNumber, messageBody);
+            processRawText(rawText);
+        } else {
+            Log.i(TAG, "processSMS: Disallowed PhoneNumber");
         }
     }
 }
