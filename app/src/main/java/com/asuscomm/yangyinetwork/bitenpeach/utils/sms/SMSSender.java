@@ -1,4 +1,4 @@
-package com.asuscomm.yangyinetwork.bitenpeach.utils;
+package com.asuscomm.yangyinetwork.bitenpeach.utils.sms;
 
 import android.Manifest;
 import android.app.Activity;
@@ -11,6 +11,7 @@ import android.telephony.SmsManager;
 import android.util.Log;
 
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.Reply;
+import com.asuscomm.yangyinetwork.bitenpeach.utils.AppController;
 
 import java.util.ArrayList;
 import java.util.List;

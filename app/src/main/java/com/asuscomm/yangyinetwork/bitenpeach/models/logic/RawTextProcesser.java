@@ -1,6 +1,5 @@
 package com.asuscomm.yangyinetwork.bitenpeach.models.logic;
 
-import android.app.Activity;
 import android.util.Log;
 
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.OrderSheet;
@@ -9,7 +8,7 @@ import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.Reply;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.witai.MeaningOfSentence;
 import com.asuscomm.yangyinetwork.bitenpeach.models.logic.witai.WitaiParser;
-import com.asuscomm.yangyinetwork.bitenpeach.utils.SMSSender;
+import com.asuscomm.yangyinetwork.bitenpeach.utils.sms.SMSSender;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.firebase.FbDBHelper;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.WitaiService;
 

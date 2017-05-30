@@ -1,4 +1,4 @@
-package com.asuscomm.yangyinetwork.bitenpeach.utils;
+package com.asuscomm.yangyinetwork.bitenpeach.utils.sms;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.AppController;
+import com.asuscomm.yangyinetwork.bitenpeach.utils.PhoneNumberChecker;
 
 import static com.asuscomm.yangyinetwork.bitenpeach.models.logic.RawTextProcesser.processRawText;
 
