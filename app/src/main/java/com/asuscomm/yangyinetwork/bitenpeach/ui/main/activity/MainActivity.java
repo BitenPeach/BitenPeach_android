@@ -64,14 +64,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testWitai() {
-//        List<RawText> rawTexts = DummyData.getDummyRawTexts();
-//        for (RawText each:
-//             rawTexts) {
-//            processRawText(each, this);
-//        }
+        List<RawText> rawTexts = DummyData.getDummyRawTexts();
+        for (RawText each:
+             rawTexts) {
+            processRawText(each, this);
+        }
 
-        RawText rawText = DummyData.getDummyRawText();
-        processRawText(rawText, this);
+//        RawText rawText = DummyData.getDummyRawText();
+//        processRawText(rawText, this);
     }
 
     private void initFirebaseDatabase() {
