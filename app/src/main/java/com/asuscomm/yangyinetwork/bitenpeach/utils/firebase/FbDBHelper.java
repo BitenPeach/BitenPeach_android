@@ -6,6 +6,7 @@ import com.asuscomm.yangyinetwork.bitenpeach.models.domain.OrderSheet;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.ProcessedText;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.Reply;
+import com.asuscomm.yangyinetwork.bitenpeach.models.logic.OrderSheetValidater;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.consts.FbDBPath;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -59,7 +60,7 @@ public class FbDBHelper {
             OrderSheet orderSheet = (OrderSheet) object;
             objectName = FbDBPath.DBPATH_ORDERSHEET;
             fromPhoneNumber = orderSheet.getFrom_phone_number();
-            if (orderSheet.isEnough()) {
+            if (OrderSheetValidater.orderSheetFilled(orderSheet)) {
                 List<String> paths = new ArrayList<>();
                 paths.add(fromPhoneNumber);
                 paths.add(FbDBPath.DBPATH_ONGOINGORDERSHEET);
@@ -68,6 +69,7 @@ public class FbDBHelper {
                 List<String> paths = new ArrayList<>();
                 paths.add(fromPhoneNumber);
                 paths.add(FbDBPath.DBPATH_ONGOINGORDERSHEET);
+                clear(findRef(mRef, paths));
                 save(findRef(mRef, paths), object);
             }
             Log.d(TAG, "save: OrderSheet");

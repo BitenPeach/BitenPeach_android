@@ -68,23 +68,6 @@ public class OrderSheet {
         from_phone_number = phone_number;
     }
 
-    public boolean isEnough() {
-        if(!isEnoughPeachInfo()) {
-            return false;
-        }
-        //todo implement
-        if(!true) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public boolean isEnoughPeachInfo() {
-        // todo implement
-        return true;
-    }
-
     public String getTo_location() {
         return to_location;
     }
@@ -160,7 +143,6 @@ public class OrderSheet {
     @Override
     public String toString() {
         return "OrderSheet{" +
-                "isEnough()='" + isEnough()+ '\'' +
                 ", to_location='" + to_location + '\'' +
                 ", to_name='" + to_name + '\'' +
                 ", to_phone_number='" + to_phone_number + '\'' +
