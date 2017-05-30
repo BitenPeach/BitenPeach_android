@@ -32,6 +32,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.1.1'
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.klinkerapps:android-smsmms:4.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

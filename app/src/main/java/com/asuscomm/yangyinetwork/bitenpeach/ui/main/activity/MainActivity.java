@@ -27,6 +27,7 @@ import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.AppController;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.mms.MMSObserver;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.mms.MMSReceiver;
+import com.asuscomm.yangyinetwork.bitenpeach.utils.mms.MMSSender;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.WitaiService;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -72,12 +73,13 @@ public class MainActivity extends AppCompatActivity {
 //             rawTexts) {
 //            processRawText(each);
 //        }
-        MMSReceiver.getInstance().getMMS();
-        MMSObserver.create();
 
-//        string2int("12과");
 //        RawText rawText = DummyData.getDummyRawText();
 //        processRawText(rawText);
+
+        // MMSSend TEST
+//        RawText rawText = DummyData.getDummyRawText();
+//        MMSSender.getInstance().send(rawText.getPhoneNumber(), rawText.getMessageBody()+"글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기");
     }
 
     private void initFirebaseDatabase() {
