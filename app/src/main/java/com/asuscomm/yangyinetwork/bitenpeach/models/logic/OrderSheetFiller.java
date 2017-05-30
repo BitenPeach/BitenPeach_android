@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.OrderSheet;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.ProcessedText;
+import com.asuscomm.yangyinetwork.bitenpeach.utils.firebase.FbDBHelper;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,8 +18,16 @@ import static com.asuscomm.yangyinetwork.bitenpeach.models.domain.OrderSheet.COM
 public class OrderSheetFiller {
     private static final String TAG = "JYP/OrderSheetFiller";
     public static OrderSheet fillOrderSheet(ProcessedText processedText) {
-        OrderSheet orderSheet;
-        if(true) { // Cannot find the prev OrderSheet.
+        OrderSheet orderSheet = null;
+
+        FbDBHelper.getInstance().loadOngoingOrderSheet(processedText.getPhoneNumber(),
+        new FbDBHelper.OnOrderSheetLoadListener() {
+            @Override
+            public void onOrderSheetLoad(OrderSheet orderSheet) {
+                Log.d(TAG, "onOrderSheetLoad: ");
+            }
+        });
+        if(orderSheet == null) { // Cannot find the prev OrderSheet.
             orderSheet = new OrderSheet(processedText.getPhoneNumber());
         }
 

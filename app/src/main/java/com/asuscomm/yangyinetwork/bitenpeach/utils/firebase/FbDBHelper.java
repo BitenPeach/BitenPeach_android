@@ -8,8 +8,11 @@ import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.Reply;
 import com.asuscomm.yangyinetwork.bitenpeach.models.logic.OrderSheetValidater;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.consts.FbDBPath;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,7 +73,7 @@ public class FbDBHelper {
                 paths.add(fromPhoneNumber);
                 paths.add(FbDBPath.DBPATH_ONGOINGORDERSHEET);
                 clear(findRef(mRef, paths));
-                save(findRef(mRef, paths), object);
+                saveDirectly(findRef(mRef, paths), object);
             }
             Log.d(TAG, "save: OrderSheet");
         }
@@ -102,6 +105,11 @@ public class FbDBHelper {
         ref.updateChildren(childUpdates);
     }
 
+    private void saveDirectly(DatabaseReference ref, Object object) {
+        Log.d(TAG, "save: ");
+        ref.setValue(object);
+    }
+
     private void initFirebaseDatabase() {
         mRef = FirebaseDatabase.getInstance().getReference(FbDBPath.DBPATH_USER_ROOT);
     }
@@ -119,5 +127,27 @@ public class FbDBHelper {
             result = result.child(path);
         }
         return result;
+    }
+
+    public interface OnOrderSheetLoadListener {
+        void onOrderSheetLoad(OrderSheet orderSheet);
+    }
+    public void loadOngoingOrderSheet(String phoneNumber, final OnOrderSheetLoadListener listener) {
+        List<String> paths = new ArrayList<>();
+        paths.add(phoneNumber);
+        paths.add(FbDBPath.DBPATH_ONGOINGORDERSHEET);
+        DatabaseReference ref = findRef(mRef, paths);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                OrderSheet object = dataSnapshot.getValue(OrderSheet.class);
+                listener.onOrderSheetLoad(object);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: ");
+            }
+        });
     }
 }
