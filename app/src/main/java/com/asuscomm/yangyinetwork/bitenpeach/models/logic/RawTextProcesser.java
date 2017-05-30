@@ -20,7 +20,7 @@ import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.WitaiService;
 public class RawTextProcesser {
     private static final String TAG = "JYP/RawTextProcesser";
 
-    public static void processRawText(final RawText rawText, final Activity activity) {
+    public static void processRawText(final RawText rawText) {
         FbDBHelper.getInstance().save(rawText);
 
         WitaiService.getInstance().get(rawText, new WitaiService.OnSuccessListener() {
@@ -40,7 +40,7 @@ public class RawTextProcesser {
                 Log.i(TAG, "onResponse: reply="+reply.toString());
                 FbDBHelper.getInstance().save(reply);
 
-//                SMSSender.sendReply(reply, activity);
+                SMSSender.sendReply(reply);
             }
         });
     }

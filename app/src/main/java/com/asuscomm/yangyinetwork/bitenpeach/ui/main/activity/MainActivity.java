@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         
         Log.d(TAG, "onCreate: ");
         AppController.getInstance().chkPermission(Manifest.permission.RECEIVE_SMS, this);
+        AppController.getInstance().chkPermission(Manifest.permission.SEND_SMS, this);
         initFirebaseDatabase();
         initView();
 
@@ -64,14 +65,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testWitai() {
-        List<RawText> rawTexts = DummyData.getDummyRawTexts();
-        for (RawText each:
-             rawTexts) {
-            processRawText(each, this);
-        }
+//        List<RawText> rawTexts = DummyData.getDummyRawTexts();
+//        for (RawText each:
+//             rawTexts) {
+//            processRawText(each);
+//        }
 
-//        RawText rawText = DummyData.getDummyRawText();
-//        processRawText(rawText, this);
+        RawText rawText = DummyData.getDummyRawText();
+        processRawText(rawText);
     }
 
     private void initFirebaseDatabase() {

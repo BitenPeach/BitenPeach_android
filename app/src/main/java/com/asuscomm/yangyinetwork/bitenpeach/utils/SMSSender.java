@@ -23,7 +23,7 @@ public class SMSSender {
     private static final String TAG = "JYP/SMSSender";
     private static final int SMS_LIMIT = 70;
 
-    public static void sendReply(Reply reply, Activity activity) {
+    public static void sendReply(Reply reply) {
         Log.d(TAG, "sendReply: reply="+reply.toString());
 
         Context appControllerContext = AppController.getInstance();
@@ -44,8 +44,6 @@ public class SMSSender {
                 Log.d(TAG, "onReceive: intent=SMS_DELIVERED_ACTION resultCode="+getResultCode());
             }
         }, new IntentFilter("SMS_DELIVERED_ACTION"));
-
-        AppController.getInstance().chkPermission(Manifest.permission.SEND_SMS, activity);
 
         SmsManager smsManager = SmsManager.getDefault();
 
