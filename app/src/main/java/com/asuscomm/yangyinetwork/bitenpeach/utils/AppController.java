@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
+import com.asuscomm.yangyinetwork.bitenpeach.utils.mms.MMSObserver;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +40,7 @@ public class AppController extends Application implements ValueEventListener {
         super.onCreate();
         mInstance = this;
         initFirebaseDatabase();
+        initMMSObserver();
 
         rawTextRef.addValueEventListener(this);
 
@@ -73,7 +75,13 @@ public class AppController extends Application implements ValueEventListener {
     }
 
     private static void initFirebaseDatabase() {
+        Log.d(TAG, "initFirebaseDatabase: ");
         rawTextRef = FirebaseDatabase.getInstance().getReference(refName);
+    }
+
+    private void initMMSObserver() {
+        Log.d(TAG, "initMMSObserver: ");
+        MMSObserver.create();
     }
 
     @Override

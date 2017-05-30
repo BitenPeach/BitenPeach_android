@@ -18,7 +18,7 @@ import static com.asuscomm.yangyinetwork.bitenpeach.models.logic.RawTextProcesse
  */
 
 public class SMSReceiver extends BroadcastReceiver {
-    private final String TAG = "JYP/"+getClass().getSimpleName();
+    private static final String TAG = "JYP/SMSReceiver";
 
     private final String SMSReceiveAction = "android.provider.Telephony.SMS_RECEIVED";
 
@@ -43,7 +43,7 @@ public class SMSReceiver extends BroadcastReceiver {
         }
     }
 
-    private void processSMS(String phoneNumber, String messageBody) {
+    public static void processSMS(String phoneNumber, String messageBody) {
         if (PhoneNumberChecker.allowedPhoneNumber(phoneNumber)) {
             Log.i(TAG, "processSMS: Allowed PhoneNumber");
             RawText rawText = new RawText(phoneNumber, messageBody);
