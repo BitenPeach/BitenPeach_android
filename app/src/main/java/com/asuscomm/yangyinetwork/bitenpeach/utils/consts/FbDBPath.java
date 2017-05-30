@@ -10,4 +10,5 @@ public interface FbDBPath {
     String DBPATH_PROCESSEDTEXT = "ProcessedText";
     String DBPATH_ORDERSHEET = "OrderSheet";
     String DBPATH_REPLY = "Reply";
+    String DBPATH_ONGOINGORDERSHEET = "OngoingOrderSheet";
 }

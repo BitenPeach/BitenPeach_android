@@ -10,7 +10,9 @@ import com.asuscomm.yangyinetwork.bitenpeach.utils.consts.FbDBPath;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,8 +56,20 @@ public class FbDBHelper {
             Log.d(TAG, "save: ProcessedText");
         }
         else if (object instanceof OrderSheet) {
+            OrderSheet orderSheet = (OrderSheet) object;
             objectName = FbDBPath.DBPATH_ORDERSHEET;
-            fromPhoneNumber = ((OrderSheet)object).getFrom_phone_number();
+            fromPhoneNumber = orderSheet.getFrom_phone_number();
+            if (orderSheet.isEnough()) {
+                List<String> paths = new ArrayList<>();
+                paths.add(fromPhoneNumber);
+                paths.add(FbDBPath.DBPATH_ONGOINGORDERSHEET);
+                clear(findRef(mRef, paths));
+            } else {
+                List<String> paths = new ArrayList<>();
+                paths.add(fromPhoneNumber);
+                paths.add(FbDBPath.DBPATH_ONGOINGORDERSHEET);
+                save(findRef(mRef, paths), object);
+            }
             Log.d(TAG, "save: OrderSheet");
         }
         else if (object instanceof Reply) {
@@ -76,7 +90,32 @@ public class FbDBHelper {
         object_ref.updateChildren(childUpdates);
     }
 
+    private void save(DatabaseReference ref, Object object) {
+        Log.d(TAG, "save: ");
+        String key = ref.push().getKey();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(key, object);
+
+        ref.updateChildren(childUpdates);
+    }
+
     private void initFirebaseDatabase() {
         mRef = FirebaseDatabase.getInstance().getReference(FbDBPath.DBPATH_USER_ROOT);
+    }
+
+    private void clear(DatabaseReference ref) {
+        Log.d(TAG, "clear: ");
+        ref.removeValue();
+    }
+
+    private DatabaseReference findRef(DatabaseReference ref, List<String> paths) {
+        Log.d(TAG, "findRef: paths="+paths.toString());
+        DatabaseReference result = ref;
+        for (String path:
+             paths) {
+            result = result.child(path);
+        }
+        return result;
     }
 }
