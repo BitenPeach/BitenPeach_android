@@ -1,4 +1,4 @@
-package com.asuscomm.yangyinetwork.bitenpeach.ui;
+package com.asuscomm.yangyinetwork.bitenpeach.utils;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
