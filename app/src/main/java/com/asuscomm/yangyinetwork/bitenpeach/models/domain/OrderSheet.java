@@ -43,7 +43,7 @@ public class OrderSheet {
     private String from_name = null;
     private String from_phone_number = null;
 
-    private Integer peach_size = null;
+    private String peach_size = null;
     public interface PEACH_SIZE {
         int SIZE9 = 9;
         int SIZE10= 10;
@@ -58,7 +58,7 @@ public class OrderSheet {
         String WHITEPEACH = "백도";
         String YELLOWPEACH = "황도";
     }
-    private Integer peach_numofbox = null;
+    private String peach_numofbox = null;
     private Double peach_amount_of_money = null;
 
     public OrderSheet() {
@@ -108,11 +108,11 @@ public class OrderSheet {
         this.from_phone_number = from_phone_number;
     }
 
-    public Integer getPeach_size() {
+    public String getPeach_size() {
         return peach_size;
     }
 
-    public void setPeach_size(Integer peach_size) {
+    public void setPeach_size(String peach_size) {
         this.peach_size = peach_size;
     }
 
@@ -124,11 +124,11 @@ public class OrderSheet {
         this.peach_kind = peach_kind;
     }
 
-    public Integer getPeach_numofbox() {
+    public String getPeach_numofbox() {
         return peach_numofbox;
     }
 
-    public void setPeach_numofbox(Integer peach_numofbox) {
+    public void setPeach_numofbox(String peach_numofbox) {
         this.peach_numofbox = peach_numofbox;
     }
 

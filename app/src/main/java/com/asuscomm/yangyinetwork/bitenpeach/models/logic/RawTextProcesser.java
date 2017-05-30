@@ -31,17 +31,21 @@ public class RawTextProcesser {
                 processedText.setPhoneNumber(rawText.getPhoneNumber());
                 FbDBHelper.getInstance().save(processedText);
 
-                OrderSheet orderSheet = OrderSheetFiller.fillOrderSheet(processedText);
-                Log.d(TAG, "onResponse: orderSheet="+orderSheet.toString());
-                orderSheet.setFrom_phone_number(rawText.getPhoneNumber());
-                FbDBHelper.getInstance().save(orderSheet);
+                OrderSheetFiller.fillOrderSheet(processedText, new OrderSheetFiller.OnFinishListener() {
+                    @Override
+                    public void onFinish(OrderSheet orderSheet) {
+                        Log.d(TAG, "onResponse: orderSheet="+orderSheet.toString());
+                        orderSheet.setFrom_phone_number(rawText.getPhoneNumber());
+                        FbDBHelper.getInstance().save(orderSheet);
 
-                Reply reply = ReplyMaker.makeReply(orderSheet);
-                reply.setPhoneNumber(rawText.getPhoneNumber());
-                Log.i(TAG, "onResponse: reply="+reply.toString());
-                FbDBHelper.getInstance().save(reply);
+                        Reply reply = ReplyMaker.makeReply(orderSheet);
+                        reply.setPhoneNumber(rawText.getPhoneNumber());
+                        Log.i(TAG, "onResponse: reply="+reply.toString());
+                        FbDBHelper.getInstance().save(reply);
 
-                SMSSender.sendReply(reply);
+                        SMSSender.sendReply(reply);
+                    }
+                });
             }
         });
     }

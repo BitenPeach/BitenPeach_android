@@ -70,9 +70,10 @@ public class MainActivity extends AppCompatActivity {
 //             rawTexts) {
 //            processRawText(each);
 //        }
-//
-        RawText rawText = DummyData.getDummyRawText();
-        processRawText(rawText);
+
+//        string2int("12과");
+//        RawText rawText = DummyData.getDummyRawText();
+//        processRawText(rawText);
     }
 
     private void initFirebaseDatabase() {
