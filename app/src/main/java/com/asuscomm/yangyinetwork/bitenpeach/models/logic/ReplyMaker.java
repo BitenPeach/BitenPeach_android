@@ -14,13 +14,17 @@ public class ReplyMaker {
 
         body += "주문서 내용입니다.\n\n";
 
-        body += orderSheet2string(orderSheet);
 
 
         if (OrderSheetValidater.orderSheetFilled(orderSheet)) {
+            orderSheet.setPeach_amount_of_money();
+            body += orderSheet2string(orderSheet);
+
             body += "\n이상 내용으로 주문이 완료되었습니다. ";
             body += "주문한 내용과 다른사항이 있으시면 말씀해주세요.";
         } else {
+            body += orderSheet2string(orderSheet);
+
             body += "\n주문을 하려면 이하의 내용이 필요합니다.\n";
             body += orderSheet2unsatisfiedList(orderSheet);
             body += "\n을 보내주세요. ";
@@ -70,7 +74,7 @@ public class ReplyMaker {
         }
         entity = orderSheet.getPeach_amount_of_money();
         if(entity != null) {
-            content += "가격 : "+entity+"\n";
+            content += "가격 : "+((int)entity)+"원\n";
         }
 
         return content;
@@ -114,10 +118,10 @@ public class ReplyMaker {
         if(entity == null) {
             content += "복숭아 박스수\n";
         }
-        entity = orderSheet.getPeach_amount_of_money();
-        if(entity == null) {
-            content += "가격\n";
-        }
+//        entity = orderSheet.getPeach_amount_of_money();
+//        if(entity == null) {
+//            content += "가격\n";
+//        }
 
         return content;
     }

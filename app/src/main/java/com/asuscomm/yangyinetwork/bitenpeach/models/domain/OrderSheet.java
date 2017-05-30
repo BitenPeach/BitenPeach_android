@@ -1,5 +1,7 @@
 package com.asuscomm.yangyinetwork.bitenpeach.models.domain;
 
+import static com.asuscomm.yangyinetwork.bitenpeach.utils.consts.config.OrderSheetInitialValue.DEFAULT_PEACH_AMOUNT_OF_MONEY;
+
 /**
  * Created by jaeyoung on 2017. 5. 29..
  */
@@ -138,6 +140,12 @@ public class OrderSheet {
 
     public void setPeach_amount_of_money(Double peach_amount_of_money) {
         this.peach_amount_of_money = peach_amount_of_money;
+    }
+
+    public void setPeach_amount_of_money() {
+        if(this.peach_amount_of_money == null) {
+            this.peach_amount_of_money = DEFAULT_PEACH_AMOUNT_OF_MONEY;
+        }
     }
 
     @Override

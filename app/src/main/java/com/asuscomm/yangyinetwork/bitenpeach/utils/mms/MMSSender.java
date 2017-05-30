@@ -2,6 +2,7 @@ package com.asuscomm.yangyinetwork.bitenpeach.utils.mms;
 
 import android.util.Log;
 
+import com.asuscomm.yangyinetwork.bitenpeach.models.domain.Reply;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.AppController;
 import com.klinker.android.send_message.Message;
 import com.klinker.android.send_message.Settings;
@@ -20,6 +21,10 @@ public class MMSSender {
             mInstance = new MMSSender();
         }
         return mInstance;
+    }
+
+    public void send(Reply reply) {
+        send(reply.getPhoneNumber(), reply.getBody());
     }
 
     public void send(String phoneNumber, String body) {

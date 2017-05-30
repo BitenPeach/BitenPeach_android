@@ -8,6 +8,7 @@ import com.asuscomm.yangyinetwork.bitenpeach.models.domain.RawText;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.Reply;
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.witai.MeaningOfSentence;
 import com.asuscomm.yangyinetwork.bitenpeach.models.logic.witai.WitaiParser;
+import com.asuscomm.yangyinetwork.bitenpeach.utils.mms.MMSSender;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.sms.SMSSender;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.firebase.FbDBHelper;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.WitaiService;
@@ -43,7 +44,8 @@ public class RawTextProcesser {
                         Log.i(TAG, "onResponse: reply="+reply.toString());
                         FbDBHelper.getInstance().save(reply);
 
-                        SMSSender.sendReply(reply);
+                        MMSSender.getInstance().send(reply);
+//                        SMSSender.sendReply(reply);
                     }
                 });
             }
