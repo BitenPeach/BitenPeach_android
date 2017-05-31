@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.asuscomm.yangyinetwork.bitenpeach.models.domain.Reply;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.AppController;
+import com.asuscomm.yangyinetwork.bitenpeach.utils.mms.MMSSender;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +22,26 @@ import java.util.List;
  */
 
 public class SMSSender {
-    private static final String TAG = "JYP/SMSSender";
-    private static final int SMS_LIMIT = 70;
+    private final String TAG = "JYP/SMSSender";
+    private final int SMS_LIMIT = 70;
 
-    public static void sendReply(Reply reply) {
+    private static SMSSender mInstance;
+
+    public static SMSSender getInstance() {
+        if (mInstance == null) {
+            mInstance = new SMSSender();
+        }
+        return mInstance;
+    }
+
+    public void send(String phoneNumber, String body) {
+        Reply reply = new Reply();
+        reply.setPhoneNumber(phoneNumber);
+        reply.setBody(body);
+        sendReply(reply);
+    }
+
+    public void sendReply(Reply reply) {
         Log.d(TAG, "sendReply: reply="+reply.toString());
 
         Context appControllerContext = AppController.getInstance();
@@ -57,15 +74,17 @@ public class SMSSender {
         }
     }
 
-    public static List<String> cutTextForSMS(String text) {
+    public List<String> cutTextForSMS(String text) {
         List<String> texts = new ArrayList<>();
         int cursor = 0;
 
-        while(text.length() > SMS_LIMIT+cursor) {
-            String sub = text.substring(cursor, cursor+SMS_LIMIT);
-            Log.d(TAG, "cutTextForSMS: substring="+sub);
-            texts.add(sub);
-            cursor += SMS_LIMIT;
+        while(text.length() > SMS_LIMIT + cursor) {
+            int next_cursor = cursor + SMS_LIMIT;
+            String sub = text.substring(cursor, next_cursor);
+            String cuttedSub = cutAtLastNewl(sub);
+            Log.d(TAG, "cutTextForSMS: substring="+cuttedSub);
+            texts.add(cuttedSub);
+            cursor += cuttedSub.length();
         }
 
         String last = text.substring(cursor, text.length());
@@ -73,5 +92,11 @@ public class SMSSender {
         texts.add(last);
 
         return texts;
+    }
+
+    public String cutAtLastNewl(String text) {
+        int idx = text.lastIndexOf("\n");
+        Log.d(TAG, "cutAtLastNewl: idx="+idx);
+        return text.substring(0, idx);
     }
 }

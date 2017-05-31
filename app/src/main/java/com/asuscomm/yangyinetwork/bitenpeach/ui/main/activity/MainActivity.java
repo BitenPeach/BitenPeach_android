@@ -28,6 +28,7 @@ import com.asuscomm.yangyinetwork.bitenpeach.utils.AppController;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.mms.MMSObserver;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.mms.MMSReceiver;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.mms.MMSSender;
+import com.asuscomm.yangyinetwork.bitenpeach.utils.sms.SMSSender;
 import com.asuscomm.yangyinetwork.bitenpeach.utils.witai.WitaiService;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testWitai() {
+
 //        List<RawText> rawTexts = DummyData.getDummyRawTexts();
 //        for (RawText each:
 //             rawTexts) {
@@ -78,8 +80,30 @@ public class MainActivity extends AppCompatActivity {
 //        processRawText(rawText);
 
         // MMSSend TEST
+//        Log.d(TAG, "testWitai: Test#1");
 //        RawText rawText = DummyData.getDummyRawText();
+//
 //        MMSSender.getInstance().send(rawText.getPhoneNumber(), rawText.getMessageBody()+"글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기글자수늘리기");
+//
+//        String phoneNumber = "01067213773";
+//        String body = "주문서 내용입니다.\n" +
+//                "\n" +
+//                "보내는이 이름 : 이우진\n" +
+//                "보내는이 번호 : 01031005275\n" +
+//                "받는이 이름 : 조재영\n" +
+//                "받는이 전화번호 : 010-6721-3773\n" +
+//                "받는이 주소 : 서울 은평구 불광1동 643번지 북한힐스테이트 7차115동\n" +
+//                "복숭아 종류 : 백도\n" +
+//                "복숭아 크기 : 12과\n" +
+//                "복숭아 박스수 : 12박스\n" +
+//                "가격 : 30000.0원\n" +
+//                "\n" +
+//                "이상 내용으로 주문이 완료되었습니다. 주문한 내용과 다른사항이 있으시면 말씀해주세요.";
+//        Log.d(TAG, "testWitai: Test#2");
+//        SMSSender.getInstance().send(phoneNumber, body);
+//        MMSSender.getInstance().send(phoneNumber, body);
+//        Log.d(TAG, "testWitai: Test#3");
+//        MMSSender.getInstance().send(phoneNumber, body);
     }
 
     private void initFirebaseDatabase() {

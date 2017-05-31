@@ -44,8 +44,8 @@ public class RawTextProcesser {
                         Log.i(TAG, "onResponse: reply="+reply.toString());
                         FbDBHelper.getInstance().save(reply);
 
-                        MMSSender.getInstance().send(reply);
-//                        SMSSender.sendReply(reply);
+//                        MMSSender.getInstance().send(reply);
+                        SMSSender.getInstance().sendReply(reply);
                     }
                 });
             }
